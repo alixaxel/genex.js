@@ -1,0 +1,33 @@
+{
+  "name": "genex",
+  "version": "0.1.0",
+  "description": "Genex module for Node.js",
+  "main": "./lib/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "ret": "~0.1.8",
+    "underscore": "~1.6.0"
+  },
+  "devDependencies": {
+    "mocha": "~1.17.1"
+  },
+  "scripts": {
+    "test": "mocha -R spec test/*-test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/alixaxel/genex.js.git"
+  },
+  "keywords": [
+    "regex",
+    "genex"
+  ],
+  "author": "Alix Axel (https://github.com/alixaxel/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alixaxel/genex.js/issues"
+  },
+  "homepage": "https://github.com/alixaxel/genex.js"
+}
