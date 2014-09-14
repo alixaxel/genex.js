@@ -1,6 +1,6 @@
 {
   "name": "genex",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Genex module for Node.js",
   "main": "./lib/index.js",
   "directories": {
