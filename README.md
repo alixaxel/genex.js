@@ -24,7 +24,7 @@ console.log('Total strings generated: ' + count);
 Install
 -------
 
-	npm install genex.js
+	npm install genex
 
 License
 -------

@@ -1,13 +1,13 @@
 {
   "name": "genex",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Genex module for Node.js",
   "main": "./lib/index.js",
   "directories": {
     "test": "test"
   },
   "dependencies": {
-    "ret": "~0.1.8",
+    "ret": "~0.1.10",
     "underscore": "~1.6.0"
   },
   "devDependencies": {
