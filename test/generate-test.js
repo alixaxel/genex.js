@@ -1,2 +1,5 @@
-var	assert = require('assert'),
-	genex = require('..');
+'use strict';
+
+var genex = require('..');
+
+var	assert = require('assert');
