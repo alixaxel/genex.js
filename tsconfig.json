@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "declaration": true,
+    "declarationDir": "declarations",
+    "downlevelIteration": true,
+    "lib": ["es2017"],
+    "module": "commonjs",
+    "noImplicitAny": false,
+    "noImplicitReturns": true,
+    "outDir": "build",
+    "paths": { "*": ["types/*"] },
+    "rootDir": "source",
+    "sourceMap": true,
+    "strictFunctionTypes": false,
+    "strictNullChecks": false,
+    "target": "es5",
+    "types": ["node", "jest"]
+  },
+  "compileOnSave": true,
+  "exclude": ["node_modules", "tests"]
+}

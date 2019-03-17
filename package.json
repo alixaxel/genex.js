@@ -1,34 +1,66 @@
 {
   "name": "genex",
+  "private": false,
   "version": "0.1.3",
+  "author": {
+    "name": "Alix Axel"
+  },
+  "license": "MIT",
   "description": "Genex module for Node.js",
-  "main": "./lib/index.js",
-  "directories": {
-    "test": "test"
+  "main": "build/index.js",
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "build": "npm run build:cjs && npm run build:esm",
+    "build:cjs": "tsc --module commonjs --target es5 --outDir build/cjs",
+    "build:esm": "tsc --module es2015 --target es5 --outDir build/esm",
+    "postversion": "git push && git push --tags && npm publish",
+    "test": "jest",
+    "version": "git add -A ."
   },
   "dependencies": {
-    "ret": "~0.1.10",
-    "lodash": "~3.10.1"
+    "ret": "^0.2.2"
   },
   "devDependencies": {
-    "assert": "~1.3.0",
-    "mocha": "~1.17.1"
+    "@types/jest": "^24.0.11",
+    "@types/node": "^11.11.3",
+    "jest": "^24.5.0",
+    "ts-jest": "^24.0.0",
+    "ts-node": "^8.0.3",
+    "typescript": "^3.3.3333"
   },
-  "scripts": {
-    "test": "mocha -R spec test/*-test.js"
+  "bugs": {
+    "url": "https://github.com/alixaxel/genex.js/issues"
   },
+  "homepage": "https://github.com/alixaxel/genex.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/alixaxel/genex.js.git"
   },
   "keywords": [
+    "genex",
     "regex",
-    "genex"
+    "regular expressions"
   ],
-  "author": "Alix Axel (https://github.com/alixaxel/)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/alixaxel/genex.js/issues"
+  "jest": {
+    "roots": [
+      "tests/"
+    ],
+    "testRegex": "[.]test[.]tsx?$",
+    "transform": {
+      "[.]tsx?$": "ts-jest"
+    }
   },
-  "homepage": "https://github.com/alixaxel/genex.js"
+  "prettier": {
+    "arrowParens": "always",
+    "bracketSpacing": true,
+    "jsxBracketSameLine": false,
+    "printWidth": 120,
+    "semi": true,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "useTabs": false
+  }
 }
