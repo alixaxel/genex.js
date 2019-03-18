@@ -9,8 +9,8 @@ import { Repetition } from './iterators/Repetition';
 import { Stack } from './iterators/Stack';
 
 class Genex {
-  private tokens: ret.Root = null;
-  private charset: number[];
+  readonly tokens: ret.Root = null;
+  readonly charset: number[];
 
   constructor(regex: string | RegExp, charset?: string) {
     if (regex instanceof RegExp) {
@@ -92,6 +92,12 @@ class Genex {
 
         result = (tokens.not === true ? difference(this.charset, set) : intersection(this.charset, set)).length;
       } else if (tokens.type === ret.types.REPETITION) {
+        if (tokens.type === ret.types.REPETITION && tokens.min === 0 && tokens.max === 1) {
+          if (tokens.value.type === ret.types.REPETITION) {
+            tokens = tokens.value;
+          }
+        }
+
         let count = counter(tokens.value);
 
         if (tokens.max === null) {
@@ -186,6 +192,19 @@ class Genex {
 
         return new Literal(set.map((value) => String.fromCharCode(value)));
       } else if (tokens.type === ret.types.REPETITION) {
+        if (tokens.type === ret.types.REPETITION && tokens.min === 0 && tokens.max === 1) {
+          if (tokens.value.type === ret.types.REPETITION) {
+            tokens = tokens.value;
+          }
+        }
+
+        // if (tokens.value.type === ret.types.REPETITION) {
+        //   if (tokens.value.min === 0 && tokens.min === 0 && tokens.max === 1) {
+        //     tokens.max = tokens.value.max;
+        //     tokens.value = tokens.value.value;
+        //   }
+        // }
+
         return Repetition(generator(tokens.value), tokens.min, tokens.max);
       } else if (tokens.type === ret.types.REFERENCE) {
         if (groups.hasOwnProperty(tokens.value - 1) !== true) {
