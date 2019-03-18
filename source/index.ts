@@ -225,9 +225,3 @@ class Genex {
 export = (regex: string | RegExp, charset?: string) => {
   return new Genex(regex, charset);
 };
-
-let f = new Genex(/(foo|bar|baz){1,2}|snafu/);
-
-console.group(`${f.count()} Combinations:`);
-console.groupEnd();
-console.log(f.generate())
