@@ -1,7 +1,7 @@
 import genex from '../source';
 
 describe('genex', () => {
-  let charset = ' *+,-./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz';
+  let charset = ' *+,-./0123456789_abcdefghijklmnopqrstuvwxyz';
   let patterns = [
     // =========================================================================
     // Character Classes
@@ -99,7 +99,7 @@ describe('genex', () => {
     { in: /[^\D\d]/, out: [] },
     { in: /[^\S\s]/, out: [] },
     { in: /[^\W\w]/, out: [] },
-    { in: /[^AZ]BC/, out: 68 },
+    { in: /[^AZ]BC/, out: 44 },
     { in: /[0-9a-f]{2}/, out: 256 },
     { in: /[0-9a-f]/, out: null },
     { in: /[01]?[01]?/, out: ['', '0', '1', '0', '00', '01', '1', '10', '11'] },

@@ -1,78 +1,36 @@
-genex.js
---------
-[![NPM Version](https://img.shields.io/npm/v/genex.svg)](https://www.npmjs.org/package/genex)
-[![NPM Downloads](https://img.shields.io/npm/dm/genex.svg)](https://www.npmjs.org/package/genex)
+# genex
 
-Genex (regular expression expansion) module for Node.js
+[![genex](https://img.shields.io/npm/v/genex.svg?style=for-the-badge)](https://www.npmjs.com/package/genex)
+[![Donate](https://img.shields.io/badge/donate-paypal-orange.svg?style=for-the-badge)](https://paypal.me/alixaxel)
 
-Usage
------
+Expands any given regular expression into all the possible strings that it would be able to match.
+
+## Install
+
+```shell
+npm i genex --save
+```
+
+## Usage
 
 ```js
-var genex = require('genex');
+const genex = require('genex');
+const pattern = genex(/(foo|bar|baz){1,2}|snafu/);
 
-var regex = /(foo|bar|baz){1,2}\d/;
-var count = genex(regex).count();
+// 13
+console.log(pattern.count());
 
-if (count <= 1000) {
-    genex(regex).generate(function (output) {
-        console.log('[*] ' + output);
-    });
-}
-
-console.log('Total strings generated: ' + count);
+/*
+[
+  'foo', 'foofoo', 'foobar', 'foobaz',
+  'bar', 'barfoo', 'barbar', 'barbaz',
+  'baz', 'bazfoo', 'bazbar', 'bazbaz',
+  'snafu'
+]
+*/
+console.log(pattern.generate());
 ```
 
-Output
-------
-
-```
-[*] foo0
-[*] ...
-[*] foo9
-[*] foofoo0
-[*] ...
-[*] foofoo9
-[*] foobar0
-[*] ...
-[*] foobar9
-[*] foobaz0
-[*] ...
-[*] foobaz9
-[*] bar0
-[*] ...
-[*] bar9
-[*] barfoo0
-[*] ...
-[*] barfoo9
-[*] barbar0
-[*] ...
-[*] barbar9
-[*] barbaz0
-[*] ...
-[*] barbaz9
-[*] baz0
-[*] ...
-[*] baz9
-[*] bazfoo0
-[*] ...
-[*] bazfoo9
-[*] bazbar0
-[*] ...
-[*] bazbar9
-[*] bazbaz0
-[*] ...
-[*] bazbaz9
-
-Total strings generated: 120
-```
-
-Install
--------
-
-    npm install genex --save
-
-License
--------
+## License
 
 MIT

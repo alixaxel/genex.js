@@ -6,7 +6,7 @@ export class Literal {
     this.data = data;
   }
 
-  clone() {
+  clone(): Literal {
     return new Literal(this.data);
   }
 
@@ -22,7 +22,7 @@ export class Literal {
     this.i = 0;
   }
 
-  valid() {
+  valid(): boolean {
     return this.i < this.data.length;
   }
 }

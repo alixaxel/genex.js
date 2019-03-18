@@ -15,7 +15,7 @@ export class Option {
     }
   }
 
-  clone() {
+  clone(): Option {
     return new Option(this.data.map((iterator) => iterator.clone()));
   }
 
@@ -41,7 +41,7 @@ export class Option {
     }
   }
 
-  valid() {
+  valid(): boolean {
     return this.i < this.data.length;
   }
 }

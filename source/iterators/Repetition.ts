@@ -3,7 +3,7 @@ import { Option } from './Option';
 import { Reference } from './Reference';
 import { Stack } from './Stack';
 
-export function Repetition(data: Reference | Literal | Stack, min: number, max: number) {
+export function Repetition(data: Reference | Literal | Stack, min: number, max: number): Literal | Stack {
   if (max === 0) {
     return new Literal(['']);
   }

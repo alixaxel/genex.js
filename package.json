@@ -8,13 +8,12 @@
   "license": "MIT",
   "description": "Genex module for Node.js",
   "main": "build/index.js",
+  "types": "build/index.d.ts",
   "files": [
     "build"
   ],
   "scripts": {
-    "build": "npm run build:cjs && npm run build:esm",
-    "build:cjs": "tsc --module commonjs --target es5 --outDir build/cjs",
-    "build:esm": "tsc --module es2015 --target es5 --outDir build/esm",
+    "build": "tsc",
     "postversion": "git push && git push --tags && npm publish",
     "test": "jest",
     "version": "git add -A ."

@@ -19,7 +19,7 @@ export class Stack {
     }
   }
 
-  clone() {
+  clone(): Stack {
     return new Stack(this.data.map((iterator) => iterator.clone()));
   }
 
@@ -49,7 +49,7 @@ export class Stack {
     }
   }
 
-  valid() {
+  valid(): boolean {
     return this.data.length > 0 && this.data[0].valid();
   }
 }

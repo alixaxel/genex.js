@@ -10,7 +10,7 @@ export class Reference {
     this.data = data;
   }
 
-  clone() {
+  clone(): Reference {
     return new Reference(this.data);
   }
 
@@ -26,7 +26,7 @@ export class Reference {
     this.i = 0;
   }
 
-  valid() {
+  valid(): boolean {
     return this.i == 0;
   }
 }

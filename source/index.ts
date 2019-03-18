@@ -1,4 +1,4 @@
-import * as ret from 'ret';
+import ret from 'ret';
 import { difference } from './helpers/difference';
 import { distinct } from './helpers/distinct';
 import { intersection } from './helpers/intersection';
@@ -9,8 +9,8 @@ import { Repetition } from './iterators/Repetition';
 import { Stack } from './iterators/Stack';
 
 class Genex {
-  tokens: ret.Root = null;
-  charset: number[];
+  private tokens: ret.Root = null;
+  private charset: number[];
 
   constructor(regex: string | RegExp, charset?: string) {
     if (regex instanceof RegExp) {
@@ -64,7 +64,7 @@ class Genex {
           result = 1;
         }
       } else if (tokens.type === ret.types.SET) {
-        let set = [];
+        let set: number[] = [];
 
         for (let stack of tokens.set) {
           if (stack.type === ret.types.SET) {
@@ -90,7 +90,7 @@ class Genex {
           }
         }
 
-        result = (tokens.not ? difference(this.charset, set) : intersection(this.charset, set)).length;
+        result = (tokens.not === true ? difference(this.charset, set) : intersection(this.charset, set)).length;
       } else if (tokens.type === ret.types.REPETITION) {
         let count = counter(tokens.value);
 
@@ -123,7 +123,7 @@ class Genex {
     return counter(this.tokens);
   }
 
-  generate(callback?: (value: string) => boolean | void): string[] {
+  generate(callback?: (value: string) => boolean | void) {
     let groups: Stack[] = [];
 
     const generator = (tokens: ret.Tokens): Option | Reference | Literal | Stack => {
@@ -132,7 +132,7 @@ class Genex {
           tokens.options = [tokens.stack];
         }
 
-        let result = distinct(
+        let result = distinct<ret.Token[]>(
           tokens.options.map((stack) => {
             return stack.filter((value) => value.hasOwnProperty('notFollowedBy') !== true);
           })
@@ -152,7 +152,7 @@ class Genex {
           return new Literal(['']);
         }
       } else if (tokens.type === ret.types.SET) {
-        let set = [];
+        let set: number[] = [];
 
         for (let stack of tokens.set) {
           if (stack.type === ret.types.SET) {
@@ -178,15 +178,13 @@ class Genex {
           }
         }
 
-        set = (tokens.not ? difference(this.charset, set) : intersection(this.charset, set)).map((value) => {
-          return String.fromCharCode(value);
-        });
+        set = tokens.not === true ? difference(this.charset, set) : intersection(this.charset, set);
 
         if (set.length === 0) {
           set = [];
         }
 
-        return new Literal(set);
+        return new Literal(set.map((value) => String.fromCharCode(value)));
       } else if (tokens.type === ret.types.REPETITION) {
         return Repetition(generator(tokens.value), tokens.min, tokens.max);
       } else if (tokens.type === ret.types.REFERENCE) {
@@ -224,6 +222,12 @@ class Genex {
   }
 }
 
-export default function genex(regex: string | RegExp, charset: string = null) {
+export = (regex: string | RegExp, charset?: string) => {
   return new Genex(regex, charset);
-}
+};
+
+let f = new Genex(/(foo|bar|baz){1,2}|snafu/);
+
+console.group(`${f.count()} Combinations:`);
+console.groupEnd();
+console.log(f.generate())
