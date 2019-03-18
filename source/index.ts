@@ -198,13 +198,6 @@ class Genex {
           }
         }
 
-        // if (tokens.value.type === ret.types.REPETITION) {
-        //   if (tokens.value.min === 0 && tokens.min === 0 && tokens.max === 1) {
-        //     tokens.max = tokens.value.max;
-        //     tokens.value = tokens.value.value;
-        //   }
-        // }
-
         return Repetition(generator(tokens.value), tokens.min, tokens.max);
       } else if (tokens.type === ret.types.REFERENCE) {
         if (groups.hasOwnProperty(tokens.value - 1) !== true) {
