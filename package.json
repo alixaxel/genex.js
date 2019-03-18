@@ -6,7 +6,7 @@
     "name": "Alix Axel"
   },
   "license": "MIT",
-  "description": "Genex module for Node.js",
+  "description": "Genex module for JavaScript",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "files": [
