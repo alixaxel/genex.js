@@ -19,7 +19,7 @@
     "version": "git add -A ."
   },
   "dependencies": {
-    "ret": "^0.2.2"
+    "ret": "^0.3.1"
   },
   "devDependencies": {
     "@types/jest": "^24.0.11",

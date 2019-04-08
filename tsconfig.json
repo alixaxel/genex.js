@@ -9,7 +9,6 @@
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "outDir": "build",
-    "paths": { "*": ["types/*"] },
     "rootDir": "source",
     "strictFunctionTypes": true,
     "strictNullChecks": false,
